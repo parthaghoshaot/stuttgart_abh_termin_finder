@@ -1,4 +1,4 @@
-# Immigration Appointment Checker
+# Stuttgart ABH Appointment Checker
 
 This project monitors the Stuttgart immigration office booking form for available appointments.
 The code launches your browser and keeps on checking for appointment in the stuttgart abh. Once it finds one, it stops there, and you can book it for your purpose.
