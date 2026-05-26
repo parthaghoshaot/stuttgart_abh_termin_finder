@@ -1,8 +1,6 @@
-# Stuttgart ABH Appointment Checker
+# Immigration Appointment Checker
 
-This project monitors the Stuttgart immigration office booking form for available appointments.
-The code launches your browser and keeps on checking for appointment in the stuttgart abh. Once it finds one, it stops there, and you can book it for your purpose.
-
+This project monitors the Stuttgart immigration office booking system for available appointments.
 
 ## Setup
 
@@ -13,20 +11,43 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Install the dependency:
+Install dependencies:
 
 ```bash
-python -m pip install -U selenium
+python -m pip install -U requests selenium
 ```
 
+## Run (New Appointment Finder)
 
-## Run
+```bash
+python3 appointment-finder_new.py
+```
+
+What happens when you run it:
+
+- The script polls the ABH API every 10 seconds from your terminal.
+- It prints timestamped status logs for every check.
+- It only opens a Chrome window after an appointment is found.
+- When an appointment is found, it also sends a macOS notification + sound.
+
+Stop the script with `Ctrl+C`.
+
+## Why this is better
+
+- Terminal-first monitoring: lower noise and less resource usage than keeping a browser session open all the time.
+- Faster feedback loop: you can see each poll result directly in logs.
+- Action only when needed: browser opens only when a slot is available, so you can jump straight into booking.
+- Better automation flow: API polling is more robust for long-running checks than UI-only polling.
+
+## Legacy Script (Optional)
+
+If you want to use the older browser-first script:
 
 ```bash
 python stuttgart_abh_appointment.py
 ```
 
-## Search Term
+## Search Term (Legacy Script)
 
 Update the `SEARCH_TERM` line in [stuttgart_abh_appointment.py](stuttgart_abh_appointment.py) based on the appointment type you want:
 
@@ -41,4 +62,4 @@ If you want the other appointment type, just swap which line is active and keep 
 
 - Keep Google Chrome updated.
 - Selenium Manager will resolve the browser driver automatically when using Selenium 4.6+.
-- The browser window stays open if an appointment appears so you can continue manually from there onwards.
+- The new finder keeps running in terminal and opens the browser only when an appointment is available.

@@ -92,7 +92,7 @@ def page_has_no_appointments(wait) -> bool:
             continue
     return False
 
-def perform_full_check(driver, timeout: int = 20) -> bool:
+def perform_full_check(driver, timeout: int = 10) -> bool:
     """
     Run one full availability check flow.
     Returns False when "No appointments available" is found, otherwise True.
